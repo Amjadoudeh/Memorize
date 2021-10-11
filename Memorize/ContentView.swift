@@ -11,11 +11,14 @@ struct ContentView: View {
 
     var body: some View {
         VStack{
-            HStack{
+            ScrollView{
+            LazyVGrid(columns: [GridItem(),GridItem(),GridItem()])
+            {
                 ForEach(emojis[0..<emojiCount], id: \.self) {
-                    emoji in CardView (content: emoji)
+                    emoji in CardView (content: emoji).aspectRatio(2/3, contentMode:.fit)
                         }
                 }
+            }.foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
             Spacer()
             
             HStack{
@@ -27,19 +30,23 @@ struct ContentView: View {
             .font(.largeTitle)
         }
         .padding(.horizontal)
-        .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
+        
     }
 
     var add : some View {
         Button(action:  {
+            if emojiCount > 1 {
             emojiCount -= 1
+            }
         }, label: {
             Image(systemName: "minus.circle")
         })
     }
     var remove : some View {
         Button(action:  {
+            if emojiCount < emojis.count {
             emojiCount += 1
+            }
         }, label: {
             Image(systemName: "plus.circle")
         })
@@ -57,7 +64,7 @@ struct CardView: View {
         ZStack {
         if isFaceUp {
             shape.fill().foregroundColor(.white)
-            shape.stroke(lineWidth: 3.0)
+            shape.strokeBorder(lineWidth: 3.0)
             Text(content).font(.largeTitle)
         } else {
             shape.fill()
