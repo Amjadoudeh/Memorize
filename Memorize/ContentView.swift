@@ -19,27 +19,27 @@ struct ContentView: View {
             Spacer()
             
             HStack{
-                remove
-                Spacer()
                 add
+                Spacer()
+                remove
             }
             .padding(.horizontal)
             .font(.largeTitle)
         }
-        padding(.horizontal)
+        .padding(.horizontal)
         .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
     }
 
     var add : some View {
         Button(action:  {
-            emojiCount += 1
+            emojiCount -= 1
         }, label: {
             Image(systemName: "minus.circle")
         })
     }
     var remove : some View {
         Button(action:  {
-            emojiCount -= 1
+            emojiCount += 1
         }, label: {
             Image(systemName: "plus.circle")
         })
