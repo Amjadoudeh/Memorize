@@ -6,11 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct MemoryGame {
     var cards: Array<Card>
     
-    func choose (card: card){
+    func choose (_ card: card){
         
+    }
+    struct Card {
+        var isFaceUp : Bool
+        var isMatched : Bool
+        var content : CardContent
     }
 }
