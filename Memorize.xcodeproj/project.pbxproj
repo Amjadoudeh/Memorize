@@ -13,6 +13,7 @@
 		7075E1E4270E103E0067BDFA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7075E1E3270E103E0067BDFA /* Preview Assets.xcassets */; };
 		7075E1EF270E103E0067BDFA /* MemorizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075E1EE270E103E0067BDFA /* MemorizeTests.swift */; };
 		7075E1FA270E103E0067BDFA /* MemorizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075E1F9270E103E0067BDFA /* MemorizeUITests.swift */; };
+		70A85AEB271D743E001D77F8 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A85AEA271D743E001D77F8 /* MemoryGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		7075E1F5270E103E0067BDFA /* MemorizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7075E1F9270E103E0067BDFA /* MemorizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITests.swift; sourceTree = "<group>"; };
 		7075E1FB270E103E0067BDFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A85AEA271D743E001D77F8 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				7075E1DC270E103D0067BDFA /* MemorizeApp.swift */,
 				7075E1DE270E103D0067BDFA /* ContentView.swift */,
+				70A85AEA271D743E001D77F8 /* MemoryGame.swift */,
 				7075E1E0270E103E0067BDFA /* Assets.xcassets */,
 				7075E1E5270E103E0067BDFA /* Info.plist */,
 				7075E1E2270E103E0067BDFA /* Preview Content */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A85AEB271D743E001D77F8 /* MemoryGame.swift in Sources */,
 				7075E1DF270E103D0067BDFA /* ContentView.swift in Sources */,
 				7075E1DD270E103D0067BDFA /* MemorizeApp.swift in Sources */,
 			);
