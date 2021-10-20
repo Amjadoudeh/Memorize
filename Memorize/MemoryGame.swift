@@ -15,12 +15,13 @@ struct MemoryGame<CardContent> {
         
     }
     
-    init(numberOfPairsOfCards: Int){
+    init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
         cards = Array<Card>()
         // add numberOfPairsOfCards x 2 cards to cards Array
         for pairIndex in 0..<numberOfPairsOfCards {
-            cards.append(Card( content: <#T##CardContent#>))
-            cards.append(Card( content: <#T##CardContent#>))
+            let content = createCardContent(pairIndex)
+            cards.append(Card( content: content))
+            cards.append(Card( content: content))
         }
     }
     
