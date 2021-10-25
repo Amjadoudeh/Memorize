@@ -13,8 +13,8 @@ struct ContentView: View {
             ScrollView{
                 LazyVGrid(columns: [GridItem(.adaptive(minimum:65))])
             {
-                ForEach(, id: \.self) {
-                    emoji in CardView (content: emoji).aspectRatio(2/3, contentMode:.fit)
+                ForEach(viewModel.cards){
+                    card in CardView (card: card).aspectRatio(2/3, contentMode:.fit)
                         }
                 }
             }.foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
@@ -31,13 +31,15 @@ struct ContentView: View {
 
 // cards
 struct CardView: View {
+    let card: MemoryGame<String>.Card
+    
        var body : some View {
         let shape = RoundedRectangle(cornerRadius: 25.0)
         ZStack {
-        if isFaceUp {
+            if card.isFaceUp {
             shape.fill().foregroundColor(.white)
             shape.strokeBorder(lineWidth: 3.0)
-            Text(content).font(.largeTitle)
+                Text(card.content).font(.largeTitle)
         } else {
             shape.fill()
             }
@@ -77,9 +79,10 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame()
-        ContentView(viewModel: EmojiMemoryGame)
+        
+        ContentView(viewModel: game)
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
-        ContentView(viewModel: EmojiMemoryGame)
+        ContentView(viewModel: game)
             .preferredColorScheme(.light)
             
     }
