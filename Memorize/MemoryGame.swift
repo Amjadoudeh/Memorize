@@ -11,6 +11,7 @@ import Foundation
 struct MemoryGame<CardContent> {
     private (set) var cards: Array<Card>
     
+    //here we have to make the cards able to flip over and playable
     func choose (_ card: Card){
         
     }
