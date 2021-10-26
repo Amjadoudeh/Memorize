@@ -3,6 +3,8 @@
 //
 //  Created by Amjad Oudeh on 06.10.21.
 
+
+// the View
 import SwiftUI
 
 struct ContentView: View {
