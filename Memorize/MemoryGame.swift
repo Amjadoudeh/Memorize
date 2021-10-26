@@ -13,7 +13,7 @@ struct MemoryGame<CardContent> {
     
     //here we have to make the cards able to flip over and playable
     func choose (_ card: Card){
-        
+        print("Hello")
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
