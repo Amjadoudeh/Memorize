@@ -26,7 +26,6 @@ struct ContentView: View {
     }
 }
 
-
 // cards
 struct CardView: View {
     let card: MemoryGame<String>.Card

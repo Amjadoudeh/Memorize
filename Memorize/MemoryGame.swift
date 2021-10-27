@@ -13,8 +13,21 @@ struct MemoryGame<CardContent> {
     //here we have to make the cards able to flip over and playable
     func choose (_ card: Card){
         // just testing ontap!
-        print("Hello")
+        let chosenIndex = Index(of: card)
+        var chosenCard = cards[chosenIndex]
+        chosenCard.isFaceUp.toggle()
+        print("chosenCard \(chosenCard)")
     }
+    
+    func Index(of card: Card) -> Int {
+            for index in 0..<cards.count {
+                if cards[index].id == card.id {
+                    return index
+                }
+            }
+        return 0
+    }
+    
     // initializing the value of the array
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
         cards = Array<Card>()
