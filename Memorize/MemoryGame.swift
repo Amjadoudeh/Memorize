@@ -7,11 +7,11 @@
 
 import Foundation
 struct MemoryGame<CardContent> {
-   // array of pairs of cards
-   private (set) var cards: Array<Card>
+    // array of pairs of cards
+    private (set) var cards: Array<Card>
     
-   //here we have to make the cards able to flip over and playable
-   mutating func choose (_ card: Card){
+    //here we have to make the cards able to flip over and playable
+    mutating func choose (_ card: Card){
         // just testing ontap!
         let chosenIndex = Index(of: card)
         cards[chosenIndex].isFaceUp.toggle()
@@ -19,11 +19,11 @@ struct MemoryGame<CardContent> {
     }
     
     func Index(of card: Card) -> Int {
-            for index in 0..<cards.count {
-                if cards[index].id == card.id {
-                    return index
-                }
+        for index in 0..<cards.count {
+            if cards[index].id == card.id {
+                return index
             }
+        }
         return 0
     }
     
