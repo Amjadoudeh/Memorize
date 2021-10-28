@@ -7,10 +7,10 @@
 
 import Foundation
 struct MemoryGame<CardContent> {
-    // array of pairs of cards
-    private (set) var cards: Array<Card>
+   // array of pairs of cards
+   private (set) var cards: Array<Card>
     
-    //here we have to make the cards able to flip over and playable
+   //here we have to make the cards able to flip over and playable
    mutating func choose (_ card: Card){
         // just testing ontap!
         let chosenIndex = Index(of: card)
