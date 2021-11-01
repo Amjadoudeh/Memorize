@@ -31,29 +31,29 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 }
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
             }
-        cards[chosenIndex].isFaceUp.toggle()
+            cards[chosenIndex].isFaceUp.toggle()
+        }
+        print("\(cards)")
     }
-    print("\(cards)")
-}
-
-// initializing the value of the array
-init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
-    cards = Array<Card>()
-    // add numberOfPairsOfCards x 2 cards to cards Array
-    for pairIndex in 0..<numberOfPairsOfCards {
-        let content = createCardContent(pairIndex)
-        // the same emojiCard but with unique Id
-        cards.append(Card( content: content, id: pairIndex*2))
-        cards.append(Card( content: content, id: pairIndex*2+1))
-    }
-}
-
-// structure of the single card
-struct Card: Identifiable {
     
-    var isFaceUp : Bool = false
-    var isMatched : Bool = false
-    var content : CardContent
-    var id: Int
-}
+    // initializing the value of the array
+    init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
+        cards = Array<Card>()
+        // add numberOfPairsOfCards x 2 cards to cards Array
+        for pairIndex in 0..<numberOfPairsOfCards {
+            let content = createCardContent(pairIndex)
+            // the same emojiCard but with unique Id
+            cards.append(Card( content: content, id: pairIndex*2))
+            cards.append(Card( content: content, id: pairIndex*2+1))
+        }
+    }
+    
+    // structure of the single card
+    struct Card: Identifiable {
+        
+        var isFaceUp : Bool = false
+        var isMatched : Bool = false
+        var content : CardContent
+        var id: Int
+    }
 }
