@@ -28,7 +28,7 @@ struct EmojiMemoryGameView: View {
 
 // cards
 struct CardView: View {
-    let card: MemoryGame<String>.Card
+    let card: EmojiMemoryGame.Card
     
     var body : some View {
         let shape = RoundedRectangle(cornerRadius: 25.0)

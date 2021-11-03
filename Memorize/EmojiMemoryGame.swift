@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-//func makeCardContent(index : Int) -> String {
-//    return "🤪"
-//}
-
-
 class EmojiMemoryGame: ObservableObject {
     
     typealias Card = MemoryGame<String>.Card
@@ -24,7 +19,7 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
     
-    @Published private var model : MemoryGame<String> = createMemoryGame()
+    @Published private var model = createMemoryGame()
     
     var cards :Array<Card> {
         model.cards
