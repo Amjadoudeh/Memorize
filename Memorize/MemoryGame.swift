@@ -3,8 +3,6 @@
 //  Memorize
 //
 //  Created by Amjad Oudeh on 18.10.21.
-//
-
 import Foundation
 import SwiftUI
 struct MemoryGame<CardContent> where CardContent: Equatable {
@@ -12,7 +10,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     private (set) var cards: Array<Card>
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
-        // refactoring the code using functioal programming
         get { return cards.indices.filter({ cards[$0].isFaceUp }).oneAndOnly }
         set { cards.indices.forEach{ cards[$0].isFaceUp = ($0 == newValue) }
             
@@ -37,19 +34,15 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    // initializing the value of the array
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
         cards = []
-        // add numberOfPairsOfCards x 2 cards to cards Array
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = createCardContent(pairIndex)
-            // the same emojiCard but with unique Id
             cards.append(Card( content: content, id: pairIndex*2))
             cards.append(Card( content: content, id: pairIndex*2+1))
         }
     }
     
-    // structure of the single card
     struct Card: Identifiable {
         
         var isFaceUp = false
