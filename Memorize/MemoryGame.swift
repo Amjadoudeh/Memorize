@@ -6,21 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 struct MemoryGame<CardContent> where CardContent: Equatable {
     
     private (set) var cards: Array<Card>
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
+        // refactoring the code using functioal programming
         get {
-            // refactoring the code using functioal programming
-            let faceUpCardIndices = cards.indices.filter({ cards[$0].isFaceUp })
-            return faceUpCardIndices.oneAndOnly
-            
+            return cards.indices.filter({ cards[$0].isFaceUp }).oneAndOnly
         }
         set {
             for index in cards.indices {
                 if index != newValue {
-                cards[index].isFaceUp = false
+                    cards[index].isFaceUp = false
                 } else {
                     cards[index].isFaceUp = true
                 }
@@ -82,3 +81,4 @@ extension Array {
         }
     }
 }
+
