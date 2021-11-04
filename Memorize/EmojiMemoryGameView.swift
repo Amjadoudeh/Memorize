@@ -12,7 +12,7 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum:65))]){
+            LazyVGrid(columns: [GridItem(.adaptive(minimum:100))]){
                 ForEach(game.cards){
                     card in CardView (card: card)
                         .aspectRatio(2/3, contentMode:.fit)
@@ -31,18 +31,20 @@ struct CardView: View {
     let card: EmojiMemoryGame.Card
     
     var body : some View {
-        let shape = RoundedRectangle(cornerRadius: 25.0)
-        ZStack {
-            if card.isFaceUp {
-                shape.fill().foregroundColor(.white)
-                shape.strokeBorder(lineWidth: 3.0)
-                Text(card.content).font(.largeTitle)
-            } else if card.isMatched {
-                shape.opacity(0)
-            } else {
-                shape.fill()
+        GeometryReader(content: { geometry in
+            ZStack {
+                let shape = RoundedRectangle(cornerRadius: 25.0)
+                if card.isFaceUp {
+                    shape.fill().foregroundColor(.white)
+                    shape.strokeBorder(lineWidth: 3.0)
+                    Text(card.content).font(Font.system(size: 80))
+                } else if card.isMatched {
+                    shape.opacity(0)
+                } else {
+                    shape.fill()
+                }
             }
-        }
+        })
         
     }
 }
