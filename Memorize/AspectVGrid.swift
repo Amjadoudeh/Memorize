@@ -7,14 +7,18 @@
 
 import SwiftUI
 
-struct AspectVGrid<Item , ItemView>: View where ItemView: View {
+struct AspectVGrid<Item , ItemView>: View where ItemView: View, Item: Identifiable {
     var items:[Item]
     var aspectRatio: CGFloat
     var content: (Item) -> ItemView
     
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let width: CGFloat = 100
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: width))]) {
+            ForEach(items) { item in content(item).aspectRatio(contentMode: .fit)
+            }
+        }
     }
 }
 
