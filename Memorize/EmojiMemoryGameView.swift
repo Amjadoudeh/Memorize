@@ -11,25 +11,21 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame
     
     var body: some View {
-        //        replacing the scrollView with a viewCombiner by adding a AspectVGrid
+        AspectVGrid(items: game.cards, aspectRatio: 2/3)
+        { card in
+            if card.isMatched && !card.isFaceUp {
+                Rectangle().opacity(0)
+            } else {
+                CardView (card: card)
+                    .padding(4)
+                    .onTapGesture {
+                        game.choose(card)
+                    }
+            }
+        }
         
-        //        ScrollView{
-        //            LazyVGrid(columns: [GridItem(.adaptive(minimum:85))]){
-        //                ForEach(game.cards)
-        //                 { card in
-        AspectVGrid(items: game.cards, aspectRatio: 2/3, content:
-                        { card in
-            CardView (card: card)
-                .padding(4)
-                .onTapGesture {
-                    game.choose(card)
-                }
-        })
-        //                        }
-        //                }
-        //            }
-            .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
-            .padding(.horizontal)
+        .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
+        .padding(.horizontal)
     }
 }
 
