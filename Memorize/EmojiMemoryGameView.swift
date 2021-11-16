@@ -35,13 +35,14 @@ struct CardView: View {
     
     var body : some View {
         GeometryReader { geometry in
-            ZStack {
-                Pie(startAngle: Angle(degrees: 0-90), endAngle: Angle(degrees: 130-90))
-                    .padding(6)
-                    .opacity(0.5)
-                Text(card.content).font(font(in: geometry.size))
-                
-            }
+//            ZStack {
+//                Pie(startAngle: Angle(degrees: 0-90), endAngle: Angle(degrees: 130-90))
+//                    .padding(6)
+//                    .opacity(0.5)
+//                Text(card.content).font(font(in: geometry.size))
+//
+//            }
+            Circle().padding().opacity(0.5)
             .modifier(Cardify(isFaceUp: card.isFaceUp))
         }
     }
