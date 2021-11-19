@@ -40,8 +40,8 @@ struct CardView: View {
                     .padding(6)
                     .opacity(0.5)
                 Text(card.content)
-                .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                .animation(Animation.easeInOut)
+//                .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+//                .animation(Animation.easeInOut)
                 .font(font(in: geometry.size))
 
             }
