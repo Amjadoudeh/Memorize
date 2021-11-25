@@ -41,7 +41,7 @@ struct CardView: View {
                     .opacity(0.5)
                 Text(card.content)
                 .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                .animation(Animation.easeInOut)
+                .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
                 .font(font(in: geometry.size))
 
             }
