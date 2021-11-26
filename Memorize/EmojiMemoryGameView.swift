@@ -11,6 +11,14 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame
     
     var body: some View {
+        VStack{
+            gameBody
+            shuffle
+        }
+        .padding()
+    }
+    
+    var gameBody: some View {
         AspectVGrid(items: game.cards, aspectRatio: 2/3)
         { card in
             if card.isMatched && !card.isFaceUp {
@@ -23,9 +31,14 @@ struct EmojiMemoryGameView: View {
                     }
             }
         }
-        
         .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
-        .padding(.horizontal)
+        
+    }
+    
+    var shuffle: some View {
+        Button("Shuffle") {
+            game.shuffle()
+        }
     }
 }
 
@@ -40,11 +53,11 @@ struct CardView: View {
                     .padding(5)
                     .opacity(0.5)
                 Text(card.content)
-                .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
-                .font(Font.system(size: DrawingConstants.fontSize))
-                .scaleEffect(scale(thatFits: geometry.size))
-
+                    .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                    .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                    .font(Font.system(size: DrawingConstants.fontSize))
+                    .scaleEffect(scale(thatFits: geometry.size))
+                
             }
             .cardify(isFaceUp: card.isFaceUp)
         }
