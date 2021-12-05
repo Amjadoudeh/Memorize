@@ -27,7 +27,7 @@ struct EmojiMemoryGameView: View {
                 CardView (card: card)
                     .padding(4)
                     .onTapGesture {
-                        withAnimation(){
+                        withAnimation(.easeInOut(duration: 2)){
                         game.choose(card)
                     }
                 }
@@ -39,7 +39,7 @@ struct EmojiMemoryGameView: View {
     
     var shuffle: some View {
         Button("Shuffle") {
-            withAnimation(.easeInOut(duration: 0.5)) {
+            withAnimation(.easeInOut(duration: 1)) {
                 game.shuffle()
             }
         }
@@ -58,7 +58,7 @@ struct CardView: View {
                     .opacity(0.5)
                 Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                    .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                    .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
                     .font(Font.system(size: DrawingConstants.fontSize))
                     .scaleEffect(scale(thatFits: geometry.size))
                 
