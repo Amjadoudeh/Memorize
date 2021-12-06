@@ -28,9 +28,9 @@ struct EmojiMemoryGameView: View {
                     .padding(4)
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 2)){
-                        game.choose(card)
+                            game.choose(card)
+                        }
                     }
-                }
             }
         }
         .foregroundColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
