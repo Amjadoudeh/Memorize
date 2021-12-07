@@ -10,6 +10,8 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame
     
+    @Namespace private var dealingNamespace
+    
     var body: some View {
         VStack{
             gameBody
@@ -35,6 +37,7 @@ struct EmojiMemoryGameView: View {
                 Rectangle().opacity(0)
             } else {
                 CardView (card: card)
+                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
                     .transition(AnyTransition.asymmetric(insertion: .scale, removal: .opacity).animation(.easeInOut(duration: 1)))
                     .onTapGesture {
@@ -53,6 +56,7 @@ struct EmojiMemoryGameView: View {
         ZStack {
             ForEach(game.cards.filter(isUndealt)) {
                 card in CardView(card: card)
+                    .matchedGeometryEffect(id: card.id, in: dealingNamespace) 
                     .transition(AnyTransition.asymmetric(insertion: .opacity, removal: .scale).animation(.easeInOut(duration: 1)))
             }
         }
