@@ -39,7 +39,7 @@ struct EmojiMemoryGameView: View {
                 CardView (card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
-                    .transition(AnyTransition.asymmetric(insertion: .scale, removal: .opacity).animation(.easeInOut(duration: 1)))
+                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale))
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 2)){
                             game.choose(card)
@@ -56,8 +56,8 @@ struct EmojiMemoryGameView: View {
         ZStack {
             ForEach(game.cards.filter(isUndealt)) {
                 card in CardView(card: card)
-                    .matchedGeometryEffect(id: card.id, in: dealingNamespace) 
-                    .transition(AnyTransition.asymmetric(insertion: .opacity, removal: .scale).animation(.easeInOut(duration: 1)))
+                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+                    .transition(AnyTransition.asymmetric(insertion: .opacity, removal: .identity).animation(.easeInOut(duration: 1)))
             }
         }
         .frame(width: CardConstants.underDealWidth , height: CardConstants.underDealHeight)
