@@ -40,7 +40,7 @@ struct EmojiMemoryGameView: View {
         AspectVGrid(items: game.cards, aspectRatio: 2/3)
         { card in
             if isUndealt(card) || (card.isMatched && !card.isFaceUp) {
-                Rectangle().opacity(0)
+                Color.clear
             } else {
                 CardView (card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
