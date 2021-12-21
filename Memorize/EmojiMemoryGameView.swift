@@ -16,7 +16,12 @@ struct EmojiMemoryGameView: View {
         VStack{
             gameBody
             deckBody
-            shuffle
+            HStack{
+                restart
+                Spacer()
+                shuffle
+            }
+            .padding(.horizontal)
         }
         .padding()
     }
@@ -92,6 +97,15 @@ struct EmojiMemoryGameView: View {
             }
         }
     }
+    var restart: some View {
+        Button("Restart") {
+            withAnimation {
+                dealt = []
+                game.restart()
+            }
+        }
+    }
+    
     
     private struct CardConstants {
         static let color = Color.red
