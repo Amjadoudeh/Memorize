@@ -45,9 +45,9 @@ struct EmojiMemoryGameView: View {
                 CardView (card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
-                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale).animation(.easeInOut(duration: 1)))
+                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale))
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 3)){
+                        withAnimation{
                             game.choose(card)
                         }
                     }
