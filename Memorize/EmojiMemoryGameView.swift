@@ -129,9 +129,10 @@ struct CardView: View {
     var body : some View {
         GeometryReader { geometry in
             ZStack {
-                Pie(startAngle: Angle(degrees: 0-90), endAngle: Angle(degrees: 130-90))
+                Pie(startAngle: Angle(degrees: 0-90),
+                endAngle: Angle(degrees: (1 - card.bonusRemaining) * 360-90))
                     .padding(5)
-                    .opacity(0.5)
+                        .opacity(0.5)
                 Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
                     .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
