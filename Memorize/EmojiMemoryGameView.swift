@@ -13,15 +13,20 @@ struct EmojiMemoryGameView: View {
     @Namespace private var dealingNamespace
     
     var body: some View {
-        VStack{
-            gameBody
-            deckBody
-            HStack{
-                restart
-                Spacer()
-                shuffle
+        ZStack(alignment:
+               .bottom){
+            VStack{
+                gameBody
+                
+                HStack{
+                    restart
+                    Spacer()
+                    shuffle
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            deckBody
+            
         }
         .padding()
     }
@@ -82,9 +87,9 @@ struct EmojiMemoryGameView: View {
         .onTapGesture{
             // deal the card out into my UI
             for card in game.cards {
-
-            withAnimation(dealAnimation(for: card)){
-                                    deal(card)
+                
+                withAnimation(dealAnimation(for: card)){
+                    deal(card)
                 }
             }
         }
