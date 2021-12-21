@@ -29,9 +29,15 @@ struct EmojiMemoryGameView: View {
     private func isUndealt(_ card:EmojiMemoryGame.Card) -> Bool {
         !dealt.contains(card.id)
     }
-    
+    private func dealAnimation(for card: EmojiMemoryGame.Card) -> Animation {
+        var delay = 0.0
+        if let index = game.cards.firstIndex(where: { $0.id == card.id}) {
+            delay = Double(index) * (CardConstants.totalDealDuration / Double(game.cards.count))
+        }
+        return Animation.easeInOut(duration: CardConstants.dealDuration).delay(delay)
+    }
     var gameBody: some View {
-        AspectVGrid(items: game.cards, aspectRatio: 3/3)
+        AspectVGrid(items: game.cards, aspectRatio: 2/3)
         { card in
             if isUndealt(card) || (card.isMatched && !card.isFaceUp) {
                 Rectangle().opacity(0)
@@ -64,9 +70,10 @@ struct EmojiMemoryGameView: View {
         .foregroundColor(CardConstants.color)
         .onTapGesture{
             // deal the card out into my UI
-            withAnimation(.easeInOut(duration: 5)){
-                for card in game.cards {
-                    deal(card)
+            for card in game.cards {
+
+            withAnimation(dealAnimation(for: card)){
+                                    deal(card)
                 }
             }
         }
@@ -120,7 +127,7 @@ struct CardView: View {
     }
     
     private struct DrawingConstants {
-        static let fontScale: CGFloat = 0.65
+        static let fontScale: CGFloat = 0.7
         static let fontSize: CGFloat = 32
     }
     

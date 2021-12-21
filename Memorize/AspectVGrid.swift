@@ -21,16 +21,15 @@ struct AspectVGrid<Item , ItemView>: View where ItemView: View, Item: Identifiab
     
     var body: some View {
         GeometryReader { geometry in
-            HStack{
+            VStack {
                 let width: CGFloat = widthThatFits(itemCount: items.count , in: geometry.size , itemAspectRatio: aspectRatio)
                 LazyVGrid(columns: [adaptiveGridItem(width: width)], spacing: 0) {
-                    ForEach(items) { item in content(item).aspectRatio(contentMode: .fill)
+                    ForEach(items) { item in content(item).aspectRatio(contentMode: .fit)
                     }
                 }
                 Spacer(minLength: 0)
             }
         }
-        
         
     }
     private func adaptiveGridItem(width: CGFloat) -> GridItem {
@@ -42,7 +41,6 @@ struct AspectVGrid<Item , ItemView>: View where ItemView: View, Item: Identifiab
     private func widthThatFits(itemCount: Int, in size: CGSize, itemAspectRatio: CGFloat) -> CGFloat {
         var columnCount = 1
         var rowCount = itemCount
-        
         repeat {
             let itemWidth = size.width / CGFloat(columnCount)
             let itemHeight = itemWidth / itemAspectRatio
