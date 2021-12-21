@@ -14,7 +14,7 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         ZStack(alignment:
-               .bottom){
+                    .bottom){
             VStack{
                 gameBody
                 
@@ -28,7 +28,7 @@ struct EmojiMemoryGameView: View {
             deckBody
             
         }
-        .padding()
+                    .padding()
     }
     @State private var dealt = Set<Int>()
     
@@ -125,17 +125,34 @@ struct EmojiMemoryGameView: View {
 // cards
 struct CardView: View {
     let card: EmojiMemoryGame.Card
+    @State private var animatedBounsRemaining: Double = 0
     
     var body : some View {
         GeometryReader { geometry in
             ZStack {
-                Pie(startAngle: Angle(degrees: 0-90),
-                endAngle: Angle(degrees: (1 - card.bonusRemaining) * 360-90))
-                    .padding(5)
-                        .opacity(0.5)
+                Group {
+                    if card.isConsumingBonusTime {
+                        Pie(startAngle: Angle(degrees: 0-90),
+                            endAngle: Angle(degrees: (1-animatedBounsRemaining) * 360-90))
+                            .onAppear{
+                                animatedBounsRemaining = card.bonusRemaining
+                                withAnimation(.linear(duration: card.bonusTimeRemaining)) {
+                                    animatedBounsRemaining = 0
+                                }
+                            }
+                    } else {
+                        Pie(startAngle: Angle(degrees: 0-90),
+                            endAngle: Angle(degrees: (1-card.bonusRemaining)*360-90))
+                    }
+                }
+                .padding(5)
+                .opacity(0.5)
+                
+                
                 Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                    .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+                    .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                    .padding(5)
                     .font(Font.system(size: DrawingConstants.fontSize))
                     .scaleEffect(scale(thatFits: geometry.size))
                 
@@ -148,9 +165,9 @@ struct CardView: View {
         min(size.width , size.height) / (DrawingConstants.fontSize / DrawingConstants.fontScale)
     }
     
-    private func font(in size: CGSize) -> Font {
-        Font.system(size: min(size.width , size.height) * DrawingConstants.fontScale)
-    }
+//    private func font(in size: CGSize) -> Font {
+//        Font.system(size: min(size.width , size.height) * DrawingConstants.fontScale)
+//    }
     
     private struct DrawingConstants {
         static let fontScale: CGFloat = 0.7
@@ -166,7 +183,7 @@ struct ContentView_Previews: PreviewProvider {
         let game = EmojiMemoryGame()
         game.choose(game.cards.first!)
         return EmojiMemoryGameView(game: game)
-            .preferredColorScheme(.light)
+            
         
     }
 }
