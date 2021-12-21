@@ -31,7 +31,7 @@ struct EmojiMemoryGameView: View {
     }
     
     var gameBody: some View {
-        AspectVGrid(items: game.cards, aspectRatio: 2/3)
+        AspectVGrid(items: game.cards, aspectRatio: 3/3)
         { card in
             if isUndealt(card) || (card.isMatched && !card.isFaceUp) {
                 Rectangle().opacity(0)
@@ -39,9 +39,9 @@ struct EmojiMemoryGameView: View {
                 CardView (card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
-                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale))
+                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale).animation(.easeInOut(duration: 1)))
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 2)){
+                        withAnimation(.easeInOut(duration: 3)){
                             game.choose(card)
                         }
                     }

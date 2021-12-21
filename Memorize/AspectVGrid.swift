@@ -24,7 +24,7 @@ struct AspectVGrid<Item , ItemView>: View where ItemView: View, Item: Identifiab
             HStack{
                 let width: CGFloat = widthThatFits(itemCount: items.count , in: geometry.size , itemAspectRatio: aspectRatio)
                 LazyVGrid(columns: [adaptiveGridItem(width: width)], spacing: 0) {
-                    ForEach(items) { item in content(item).aspectRatio(contentMode: .fit)
+                    ForEach(items) { item in content(item).aspectRatio(contentMode: .fill)
                     }
                 }
                 Spacer(minLength: 0)
