@@ -119,7 +119,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
 }
-   
+
 
 extension Array {
     var oneAndOnly: Element? {
